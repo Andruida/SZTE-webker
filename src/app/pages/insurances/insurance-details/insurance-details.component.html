@@ -1,0 +1,47 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h4>Biztosítás részletek</h4>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="insuranceForm" (ngSubmit)="save()">
+        <mat-form-field>
+          <mat-label>Lejárat</mat-label>
+          <input matInput formControlName="expiration" type="date" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Típus</mat-label>
+          <input matInput formControlName="type" type="text" />
+        </mat-form-field>
+  
+        <button mat-raised-button color="primary" type="submit">Mentés</button>
+      </form>
+      <div>
+        <button
+        *ngIf="insuranceId !== 'new'"
+        mat-raised-button
+        color="primary"
+        routerLink="events"
+      >
+        Káresemények
+      </button>
+        <button
+          *ngIf="insuranceId !== 'new'"
+          mat-raised-button
+          color="warn"
+          (click)="remove()"
+        >
+          Törlés
+        </button>
+        <button
+          routerLink=".."
+          mat-raised-button
+          color="primary"
+        >
+          Vissza
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

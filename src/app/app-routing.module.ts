@@ -7,9 +7,10 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    canActivate: [isLoggedInGuard],
-    loadChildren: () =>
-      import('./pages/main/main.module').then((m) => m.MainModule),
+    redirectTo: '/cars',
+    // canActivate: [isLoggedInGuard],
+    // loadChildren: () =>
+    //   import('./pages/main/main.module').then((m) => m.MainModule),
   },
   {
     path: 'login',
@@ -22,6 +23,12 @@ const routes: Routes = [
     canActivate: [isLoggedOutGuard],
     loadChildren: () =>
       import('./pages/register/register.module').then((m) => m.RegisterModule),
+  },
+  {
+    path: 'cars',
+    canActivate: [isLoggedInGuard],
+    loadChildren: () =>
+      import('./pages/cars/cars.module').then((m) => m.CarsModule),
   },
   { path: '**', redirectTo: '/login' },
 ];

@@ -54,8 +54,11 @@ export class EventService {
     return {...data.data()} as InsuranceEvent;
   }
 
-  fetchAll(userId: string, carId: string, insuranceId: string) {
-    return getDocs(this.getCollection(userId, carId, insuranceId));
+  async fetchAll(userId: string, carId: string, insuranceId: string) {
+    const data = await getDocs(this.getCollection(userId, carId, insuranceId));
+    return data.docs.map((doc) => {
+      return {...doc.data()} as InsuranceEvent;
+    });
   }
 
   update(

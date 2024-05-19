@@ -1,0 +1,46 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h4>Jármű részletek</h4>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="carForm" (ngSubmit)="save()">
+      <mat-form-field>
+        <mat-label>Rendszám</mat-label>
+        <input matInput formControlName="plate" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Szín</mat-label>
+        <input matInput formControlName="color" type="text" />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Mentés</button>
+    </form>
+    <div>
+      <button
+        *ngIf="carId !== 'new'"
+        mat-raised-button
+        color="primary"
+        routerLink="insurances"
+      >
+        Biztosítások
+      </button>
+      <button
+        *ngIf="carId !== 'new'"
+        mat-raised-button
+        color="warn"
+        (click)="remove()"
+      >
+        Törlés
+      </button>
+      <button
+          routerLink=".."
+          mat-raised-button
+          color="primary"
+        >
+          Vissza
+        </button>
+    </div>
+  </mat-card-content>
+</mat-card>

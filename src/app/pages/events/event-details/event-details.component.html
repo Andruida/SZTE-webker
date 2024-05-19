@@ -1,0 +1,43 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h4>Káresemény részletek</h4>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="eventForm" (ngSubmit)="save()">
+        <mat-form-field>
+          <mat-label>Dátum</mat-label>
+          <input matInput formControlName="date" type="date" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Státusz</mat-label>
+          <input matInput formControlName="status" readonly type="text" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Leírás</mat-label>
+          <textarea matInput formControlName="details"></textarea>
+        </mat-form-field>
+  
+        <button mat-raised-button color="primary" type="submit">Mentés</button>
+      </form>
+      <div>
+        <button
+          *ngIf="eventId !== 'new'"
+          mat-raised-button
+          color="warn"
+          (click)="remove()"
+        >
+          Törlés
+        </button>
+        <button
+          routerLink=".."
+          mat-raised-button
+          color="primary"
+        >
+          Vissza
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

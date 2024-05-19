@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DocumentReference, Firestore, collection, doc, setDoc, getDoc, deleteDoc, addDoc, getDocs } from '@angular/fire/firestore';
+import { DocumentReference, Firestore, collection, doc, setDoc, getDoc, deleteDoc, addDoc, getDocs, QuerySnapshot, query, orderBy } from '@angular/fire/firestore';
 import { UserService } from './user.service';
 import { CarService } from './car.service';
 import { Insurance } from '../models/Insurance';
@@ -23,13 +23,19 @@ export class InsuranceService {
     return this.update(userId, carId, insurance);
   }
 
-  fetch(userId: string, carId: string, insuranceId: string) {
+  async fetch(userId: string, carId: string, insuranceId: string) {
     const ref: DocumentReference = doc(this.getCollection(userId, carId), insuranceId);
-    return getDoc(ref);
+    const data = await getDoc(ref);
+    return {...data.data()} as Insurance;
   }
 
-  fetchAll(userId: string, carId: string) {
-    return getDocs(this.getCollection(userId, carId));
+  async fetchAll(userId: string, carId: string) {
+    const data: QuerySnapshot = await getDocs(
+      query(this.getCollection(userId, carId), orderBy('expiration'))
+    );
+    return data.docs.map((doc) => {
+      return {...doc.data()} as Insurance;
+    });
   }
 
   update(userId: string, carId: string, insurance: Insurance) {
