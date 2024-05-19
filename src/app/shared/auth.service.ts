@@ -18,6 +18,10 @@ export class AuthService {
     return user(this.auth);
   }
 
+  getUser() {
+    return this.auth.currentUser;
+  }
+
   async isLoggedIn() {
     await this.auth.authStateReady();
     console.log(this.auth.currentUser);
