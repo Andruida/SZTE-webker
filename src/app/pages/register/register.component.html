@@ -1,1 +1,26 @@
-<p>register works!</p>
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h4>Regisztráció</h4>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <mat-form-field>
+          <mat-label>E-mail</mat-label>
+          <input matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Jelszó</mat-label>
+          <input matInput formControlName="password" type="password">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Jelszó még egyszer</mat-label>
+            <input matInput formControlName="passwordConfirm" type="password">
+          </mat-form-field>
+        <p class="login-line">Van már fiókja? <a routerLink="/login">Jelentkezzen be!</a></p>
+        
+        <button mat-raised-button color="primary" type="submit">Regisztráció</button>
+      </form>
+    </mat-card-content>
+  </mat-card>

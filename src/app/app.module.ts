@@ -9,17 +9,31 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MenuComponent } from './shared/menu/menu.component';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [
     provideAnimationsAsync(),
-    provideFirebaseApp(() => initializeApp({"projectId":"biztos-kocsi","appId":"1:2149388697:web:24939f569233fb522b0308","storageBucket":"biztos-kocsi.appspot.com","apiKey":"AIzaSyBcXSMHj3oAlW0lCSu8dzJKzh9XMWKERzY","authDomain":"biztos-kocsi.firebaseapp.com","messagingSenderId":"2149388697"})),
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage())
