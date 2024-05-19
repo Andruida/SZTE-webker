@@ -8,7 +8,7 @@
     <form [formGroup]="carForm" (ngSubmit)="save()">
       <mat-form-field>
         <mat-label>Rendszám</mat-label>
-        <input matInput formControlName="plate" />
+        <input matInput formControlName="plate" [value]="carForm.get('plate')?.value | toUpper" />
       </mat-form-field>
       <mat-form-field>
         <mat-label>Szín</mat-label>

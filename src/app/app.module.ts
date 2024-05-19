@@ -16,6 +16,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MenuComponent } from './shared/menu/menu.component';
 import { environment } from '../environments/environment';
+import { ToUpperPipe } from './shared/to-upper.pipe';
 
 @NgModule({
   declarations: [
